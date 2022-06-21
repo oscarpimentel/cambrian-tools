@@ -1,0 +1,4 @@
+[default]
+save_path = './save'
+load_path = './load'
+config_path = './configs'
