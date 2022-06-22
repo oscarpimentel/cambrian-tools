@@ -135,17 +135,17 @@ def get_lists_intersection(lst1, lst2):
     return intersection
 
 
-def check_lists_are_different(lst11, lst12):
-    for x in lst11:
-        if x in lst12:
+def check_lists_are_different(lst1, lst2):
+    for x in lst1:
+        if x in lst2:
             return False
     return True
 
 
-def check_lists_are_equal(lst11, lst12,
+def check_lists_are_equal(lst1, lst2,
                           checks_len=True,
                           ):
-    c = set(lst11) == set(lst12)
+    c = set(lst1) == set(lst2)
     if checks_len:
-        c = c and len(lst11) == len(lst12)
+        c = c and len(lst1) == len(lst2)
     return c

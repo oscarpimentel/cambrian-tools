@@ -2,7 +2,7 @@
 # Cambrian Tools
 
 ## Installing
-
+To install the package run the following script:
 ```bash
 pip install cambriantools
 ```
@@ -12,3 +12,8 @@ To execute [master_run.sh](master_run.sh) just run the following command in the 
 ```bash
 bash master_run.sh
 ```
+
+## Data
+Public data: https://drive.google.com/drive/folders/19q3OVxoATB-UaoIsvjp07su9Uy2XJQnT?usp=sharing
+
+## References
