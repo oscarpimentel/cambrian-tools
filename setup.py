@@ -12,7 +12,7 @@ classifiers = [
 ]
 setuptools.setup(name='cambriantools',
                  version='0.0.1',
-                 description='Library with basic and general python methods',
+                 description='generic description',
                  python_requires='>=3.10',
                  install_requires=required,
                  keywords='experimental',

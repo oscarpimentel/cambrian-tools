@@ -105,13 +105,15 @@ def string_replacement(string, replace_dict):
 
     Parameters
     ----------
-    string (str): the target string
-    replace_dict (dict): This is a dictionary where the keys are the target sub-string to be replaced and the values are the sub-string replacement.
-                    The replacement are in the key order.
+    string: str
+        The target string
+    replace_dict: dict
+        This is a dictionary where the keys are the target sub-string to be replaced and the values are the sub-string replacement. The replacement are in the key order.
 
-    Return
-    ----------
-    new_string (str): the new string
+    Returns
+    -------
+    new_string: str
+        The new string
     """
     assert type(replace_dict) == dict
     new_string = copy(string)

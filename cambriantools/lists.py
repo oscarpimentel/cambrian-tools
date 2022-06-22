@@ -9,29 +9,29 @@ RANDOM_STATE = None
 SHUFFLE = True
 
 
-def _check(l: list):
-    assert isinstance(l, list)
-    assert len(l) > 0
+def _check(lst: list):
+    assert isinstance(lst, list)
+    assert len(lst) > 0
 
 
-def _check_not_empy(l: list):
-    _check(l)
-    assert len(l) > 0
+def _check_not_empy(lst: list):
+    _check(lst)
+    assert len(lst) > 0
 
 
-def index_list(l, idxs):
-    return list(np.array(l)[idxs])
+def index_list(lst, idxs):
+    return list(np.array(lst)[idxs])
 
 
-def get_shuffled(l,
+def get_shuffled(lst,
                  shuffle=SHUFFLE,
                  random_state=RANDOM_STATE,
                  ):
-    new_l = copy.deepcopy(l)
+    new_lst = copy.deepcopy(lst)
     if shuffle:
         random.seed(random_state)
-        random.shuffle(new_l)
-    return new_l
+        random.shuffle(new_lst)
+    return new_lst
 
 
 def get_shared_shuffled(*args,
@@ -44,8 +44,8 @@ def get_shared_shuffled(*args,
                             shuffle=shuffle,
                             )
     new_args = []
-    for l in args:
-        new_args += [copy.deepcopy(index_list(l, new_idxs))]
+    for lst in args:
+        new_args += [copy.deepcopy(index_list(lst, new_idxs))]
     return new_args
 
 
@@ -77,11 +77,11 @@ def list_product(*args):
     return list(itertools.product(*args))  # just a wrap
 
 
-def split_list_in_batches(l, batch_size):
+def split_list_in_batches(lst, batch_size):
     batches = []
     index = 0
-    while index < len(l):
-        batches.append(l[index: index + batch_size])
+    while index < len(lst):
+        batches.append(lst[index: index + batch_size])
         index += batch_size
     return batches
 
@@ -90,23 +90,23 @@ def flat_list(list_of_lists):
     return sum(list_of_lists, [])
 
 
-def get_random_item(l):
-    _check_not_empy(l)
-    idx = 0 if len(l) == 1 else random.randint(0, len(l) - 1)
-    return l[idx]
+def get_random_item(lst):
+    _check_not_empy(lst)
+    idx = 0 if len(lst) == 1 else random.randint(0, len(lst) - 1)
+    return lst[idx]
 
 
-def get_bootstrap(l: list, n,
+def get_bootstrap(lst: list, n,
                   random_state=RANDOM_STATE,
                   replace=True,
                   ):
     if replace:
         random.seed(random_state)
-        bootstrap = [get_random_item(l) for _ in range(0, n)]  # faster than numpy.choice
+        bootstrap = [get_random_item(lst) for _ in range(0, n)]  # faster than numpy.choice
         return bootstrap
     else:
         np.random.seed(random_state)
-        bootstrap = np.choice(l, size=n, replace=False)
+        bootstrap = np.choice(lst, size=n, replace=False)
         return bootstrap
 
 
@@ -115,37 +115,37 @@ def merge_lists(*args):
     return merged
 
 
-def delete_from_list(l: list, elements_to_remove: list):
+def delete_from_list(lst: list, elements_to_remove: list):
     removed_elements = []
-    new_l = []
-    for e in l:
+    new_lst = []
+    for e in lst:
         if e in elements_to_remove:
             removed_elements += [e]
         else:
-            new_l += [e]
-    return new_l, removed_elements
+            new_lst += [e]
+    return new_lst, removed_elements
 
 
-def all_elements_are_equal(l: list):
-    return l.count(l[0]) == len(l)
+def all_elements_are_equal(lst: list):
+    return lst.count(lst[0]) == len(lst)
 
 
-def get_lists_intersection(l1, l2):
-    intersection = list(set(l1).intersection(set(l2)))
+def get_lists_intersection(lst1, lst2):
+    intersection = list(set(lst1).intersection(set(lst2)))
     return intersection
 
 
-def check_lists_are_different(l1, l2):
-    for x in l1:
-        if x in l2:
+def check_lists_are_different(lst11, lst12):
+    for x in lst11:
+        if x in lst12:
             return False
     return True
 
 
-def check_lists_are_equal(l1, l2,
+def check_lists_are_equal(lst11, lst12,
                           checks_len=True,
                           ):
-    c = set(l1) == set(l2)
+    c = set(lst11) == set(lst12)
     if checks_len:
-        c = c and len(l1) == len(l2)
+        c = c and len(lst11) == len(lst12)
     return c
