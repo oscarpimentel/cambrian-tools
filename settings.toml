@@ -1,4 +1,5 @@
 [default]
+temp_path = './temp'
+data_path = './data'
 save_path = './save'
-load_path = './load'
 config_path = './configs'

@@ -4,8 +4,8 @@ SECONDS=0
 run_python_script(){
 	now=$(date +"%T")
 	echo -e "\e[7mrunning script ($now)\e[27m python $1"
-	# eval "python $1"  # to perform serial runs
-	eval "python $1 > /dev/null 2>&1" & # to perform parallel runs
+	eval "python $1"  # to perform serial runs
+	# eval "python $1 > /dev/null 2>&1" & # to perform parallel runs
 }
 intexit(){
     kill -HUP -$$
