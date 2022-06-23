@@ -9,7 +9,7 @@ echo '*.pyc*' >> .gitignore
 echo '*.ipynb_checkpoints*' >> .gitignore
 echo '*__pycache__*' >> .gitignore
 echo '.vscode/' >> .gitignore
-echo '.egg-info' >> .gitignore
+echo '*.egg-info' >> .gitignore
 echo 'temp/' >> .gitignore
 echo 'save/' >> .gitignore
 echo 'data/' >> .gitignore
