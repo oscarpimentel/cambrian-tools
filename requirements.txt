@@ -1,0 +1,12 @@
+attrs @ file:///home/conda/feedstock_root/build_artifacts/attrs_1640799537051/work
+certifi==2022.6.15
+fastjsonschema @ file:///home/conda/feedstock_root/build_artifacts/python-fastjsonschema_1641751198313/work/dist
+importlib-metadata @ file:///home/conda/feedstock_root/build_artifacts/importlib-metadata_1653252803161/work
+importlib-resources @ file:///home/conda/feedstock_root/build_artifacts/importlib_resources_1655356668708/work
+jsonschema @ file:///home/conda/feedstock_root/build_artifacts/jsonschema-meta_1654138136460/work
+jupyter-core @ file:///home/conda/feedstock_root/build_artifacts/jupyter_core_1652365243968/work
+nbformat @ file:///home/conda/feedstock_root/build_artifacts/nbformat_1651607001005/work
+nbstripout @ file:///home/conda/feedstock_root/build_artifacts/nbstripout_1625076316133/work
+pyrsistent @ file:///home/conda/feedstock_root/build_artifacts/pyrsistent_1649013351988/work
+traitlets @ file:///home/conda/feedstock_root/build_artifacts/traitlets_1655411388954/work
+zipp @ file:///home/conda/feedstock_root/build_artifacts/zipp_1649012893348/work
