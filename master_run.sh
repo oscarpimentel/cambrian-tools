@@ -5,7 +5,7 @@ run_python_script(){
 	now=$(date +"%T")
 	echo -e "\e[7mrunning script ($now)\e[27m python $1"
 	eval "python $1"  # to perform serial runs
-	# eval "python $1 > /dev/null 2>&1" & # to perform parallel runs
+	# eval "python $1 > /dev/null 2>&1" &  # to perform parallel runs
 }
 intexit(){
     kill -HUP -$$
@@ -29,12 +29,14 @@ models=(
 	MLPClassifier
 	DummyClassifier  # used as sanity check
 )
-kf="none"
 config="config1"
+kfs=({0..4})  # k-folds
 for model in "${models[@]}"; do
-	run_python_script "dummy_algorithm.py --model $model --kf $kf --config $config"
-	run_python_script "dummy_algorithm.py --model $model --kf $kf --config $config --uses_da"
-	:
+		for kf in "${kfs[@]}"; do
+		run_python_script "dummy_algorithm.py --model $model --kf $kf --config $config"
+		run_python_script "dummy_algorithm.py --model $model --kf $kf --config $config --uses_da"
+		:
+	done
 done
 wait
 # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,4 +1,4 @@
-name: cambriantools
+name: cambrian-tools
 channels:
   - defaults
 dependencies:
@@ -20,13 +20,8 @@ dependencies:
   - xz=5.2.5=h7f8727e_1
   - zlib=1.2.12=h7f8727e_2
   - pip:
-    - certifi==2022.5.18.1
-    - dynaconf==3.1.9
-    - nested-dict==1.61
-    - numpy==1.22.4
+    - certifi==2022.6.15
     - pip==21.2.4
     - setuptools==61.2.0
-    - termcolor==1.1.0
-    - toml==0.10.2
-prefix: /home/tesla/anaconda3/envs/cambriantools
+prefix: /home/tesla/anaconda3/envs/cambrian-tools
 
