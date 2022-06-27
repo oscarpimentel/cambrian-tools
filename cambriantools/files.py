@@ -1,5 +1,92 @@
 import os
 import pickle
+
+from . import _C
+from . import prints
+
+VERBOSE = _C.VERBOSE
+
+
+def get_filedirs(rootdir: str,
+                 fext=None,
+                 ):
+    """
+    Get a list of filedirs in all subdirs with extention .fext
+
+    Parameters:
+    -----------
+    rootdir:
+        Path to search
+    fext:
+        file extention. None: search for all extentions
+
+    Return:
+    -------
+    filedirs: list of (srt)
+        list of filedirs
+    """
+    filedirs = []
+    for root, dirs, files in os.walk(rootdir):
+        for f in files:
+            if fext is None or f.split('.')[-1] == fext:  # do not add if none
+                filedirs += [f'{root}/{f}']
+    return filedirs
+
+
+def mkdirs_for_filedir(filedir):
+    filepath = os.path.split(filedir)[0]
+    os.makedirs(filepath, exist_ok=True)
+
+
+def save_txt(filedir, string):
+    text_file = open(filedir, 'w')
+    text_file.write(string)
+    text_file.close()
+
+
+def save_pickle(filedir: str, file: object):
+    if not type(filedir) == str:
+        raise TypeError('wrong filedir type')
+    mkdirs_for_filedir(filedir)
+    file_pi = open(filedir, 'wb')
+    pickle.dump(file, file_pi)
+    file_pi.close()
+
+
+def load_pickle(filedir: str,
+                return_none_if_missing=False,
+                verbose=VERBOSE,
+                ):
+    """
+    Parameters:
+    -----------
+    filedir:
+        The filedir of file to read
+
+    Returns:
+    --------
+    file: object
+        The read object from disk
+    """
+    if filedir is None:
+        return None
+
+    if not os.path.isfile(filedir):
+        if return_none_if_missing:
+            return None
+        else:
+            raise Exception(f'no file in filedir={filedir}')
+
+    if verbose == 1:
+        prints.print_blue(f'> loading filedir={filedir}')
+
+    pickle_in = open(filedir, 'rb')
+    file = pickle.load(pickle_in)
+    pickle_in.close()
+    return file
+
+
+"""
 # import time
 # from . import strings
 # from . import prints
@@ -17,33 +104,8 @@ import pickle
 # CFILENAME = '_cfilename' # data
 # FEXT = '_fext' # txt
 # FILESIZE_FACTOR = 1e-6 # in mbs
-# VERBOSE = 0
 # IMBALANCED_KF_MODE = 'error' # error ignore oversampling
 # RANDOM_STATE = None
-
-
-def save_txt(filedir, string):
-    text_file = open(filedir, 'w')
-    text_file.write(string)
-    text_file.close()
-
-
-def save_pickle(filedir: str, file: object):
-    if not type(filedir) == str:
-        raise TypeError('wrong filedir type')
-    create_dir_for_filedir(filedir)
-    file_pi = open(filedir, 'wb')
-    pickle.dump(file, file_pi)
-    file_pi.close()
-
-
-def create_dir_for_filedir(filedir):
-    args = filedir.split('/')[:-1]
-    fileroot = os.path.join(*args)
-    os.makedirs(fileroot, exist_ok=True)
-
-
-"""
 
 ###################################################################################################################################################
 
@@ -144,35 +206,6 @@ def save_pickle(filedir:str, file:object,
     pickle.dump(file, file_pi)
     file_pi.close()
 
-def load_pickle(filedir:str,
-    return_none_if_missing=False,
-    verbose=VERBOSE,
-    ):
-    '''
-    Parameters
-    ----------
-    filedir: filedir of file to read
-
-    Return
-    ----------
-    file (object): the read object from disk
-    '''
-    if filedir is None:
-        return None
-
-    if not filedir_exists(filedir):
-        if return_none_if_missing:
-            return None
-        else:
-            raise Exception(f'no file in {filedir}')
-
-    if verbose==1:
-        prints.print_blue(f'> loading: {filedir}')
-
-    pickle_in = open(filedir,'rb')
-    file = pickle.load(pickle_in)
-    pickle_in.close()
-    return file
 
 ###################################################################################################################################################
 

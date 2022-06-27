@@ -1,6 +1,8 @@
 import setuptools
 
 
+with open('version', 'r') as fh:
+    version = fh.read()
 with open('README.md', 'r') as fh:
     long_description = fh.read()
 with open('requirements.txt') as f:
@@ -11,7 +13,7 @@ classifiers = [
     'Operating System :: OS Independent',
 ]
 setuptools.setup(name='cambriantools',
-                 version='0.0.1',
+                 version=version,
                  description='generic description',
                  python_requires='>=3.10',
                  install_requires=required,

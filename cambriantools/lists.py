@@ -4,8 +4,10 @@ import random
 
 import numpy as np
 
+from . import _C
 
-RANDOM_STATE = None
+
+RANDOM_STATE = _C.RANDOM_STATE
 SHUFFLE = True
 
 

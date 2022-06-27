@@ -1,5 +1,5 @@
-![](https://img.shields.io/badge/python-3.10-orange)
-# Cambrian Tools
+![](https://img.shields.io/badge/python-3.10-orange) ![](https://img.shields.io/badge/status-in_progress-red)
+# Cambrian Tools 🔧
 
 ## Installation
 To install the package run the following script:
